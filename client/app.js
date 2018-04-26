@@ -1,5 +1,6 @@
 const url = '/chirps';
 
+
 // Chirp get method
 
 let findChirps = $.getJSON( "api/chirps", function(msgs) {
@@ -16,26 +17,26 @@ let findChirps = $.getJSON( "api/chirps", function(msgs) {
 
 // Chirp post method
 
-$('#submitBtn').click(function(e) {
-    e.preventDefault();
+$('#submitBtn').click(function() {
 
 let formInput = $('#chirpBox').val();
     console.log(formInput);
 let inputs = {
     text: `${formInput}`
 };
-    console.log(inputs);
-let chirpMsg = JSON.stringify(inputs);
-    console.log(chirpMsg);
-
-let addChirps = $.post( "api/chirps", function(chirpMsg) {
-   
-    // console.log(chirpMsg);
-    // let chirp = JSON.stringify(chirpMsg);
-    // console.log(chirp);
-     
-});
-
-
+    $.ajax ({
+        url: 'api/chirps',
+        type: "POST",
+        data: JSON.stringify(inputs),
+        contentType: "application/json; charset=utf-8",
+    }).done(() => {
+        console.log('success');
+    }).fail((err) => {
+        console.log('failed');
+        console.log(err);
+    });
 });
   
+
+
+ 
