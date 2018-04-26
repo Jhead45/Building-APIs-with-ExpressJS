@@ -1,5 +1,7 @@
 const url = '/chirps';
 
+// Chirp get method
+
 let findChirps = $.getJSON( "api/chirps", function(msgs) {
     let keys = Object.keys(msgs);
      for (let i of keys) { 
@@ -12,19 +14,28 @@ let findChirps = $.getJSON( "api/chirps", function(msgs) {
     }
 });
 
+// Chirp post method
 
+$('#submitBtn').click(function(e) {
+    e.preventDefault();
 
+let formInput = $('#chirpBox').val();
+    console.log(formInput);
+let inputs = {
+    text: `${formInput}`
+};
+    console.log(inputs);
+let chirpMsg = JSON.stringify(inputs);
+    console.log(chirpMsg);
 
-        // if ( i < keys.length) {
-        // $(`<tr class='text-center' id='row${i}'></tr>`).appendTo('#display');
-        // $(`<td>${msgs[i].value}</td>`).appendTo(`#row${i}`);
-        // } else {s
-        //     console.log('No More arrays');
-        // }
-    
-
+let addChirps = $.post( "api/chirps", function(chirpMsg) {
    
-  
+    // console.log(chirpMsg);
+    // let chirp = JSON.stringify(chirpMsg);
+    // console.log(chirp);
+     
+});
 
- //console.log(msgs[i].text);
-  //console.log(msgs[place].text);
+
+});
+  
